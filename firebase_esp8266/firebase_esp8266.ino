@@ -21,7 +21,7 @@
 #include <FirebaseArduino.h>
 
 // Set these to run example.
-#define FIREBASE_HOST "https://webhome-5e814.firebaseio.com/"
+#define FIREBASE_HOST "webhome-5e814.firebaseio.com"
 #define FIREBASE_AUTH "3gAnSCcSxTUGT8Wy1YhIJ61Im8IIYNtjUt0F8OKM"
 #define WIFI_SSID "CACHACA"
 #define WIFI_PASSWORD ""
@@ -40,70 +40,27 @@ void setup() {
   Serial.print("connected: ");
   Serial.println(WiFi.localIP());
   
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-}
-
-int n = 0;
-
-void loop() {
-  // set value
-  Firebase.setFloat("number", 42.0);
-  // handle error
-  if (Firebase.failed()) {
-      Serial.print("setting /number failed:");
-      Serial.println(Firebase.error());  
-      return;
-  }
-  delay(1000);
+ Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);  
+  pinMode(D1,OUTPUT);  
+  Firebase.set("LED_STATUS",0);  
+}  
   
-  // update value
-  Firebase.setFloat("number", 43.0);
-  // handle error
-  if (Firebase.failed()) {
-      Serial.print("setting /number failed:");
-      Serial.println(Firebase.error());  
-      return;
-  }
-  delay(1000);
-
-  // get value 
-  Serial.print("number: ");
-  Serial.println(Firebase.getFloat("number"));
-  delay(1000);
-
-  // remove value
-  Firebase.remove("number");
-  delay(1000);
-
-  // set string value
-  Firebase.setString("message", "hello world");
-  // handle error
-  if (Firebase.failed()) {
-      Serial.print("setting /message failed:");
-      Serial.println(Firebase.error());  
-      return;
-  }
-  delay(1000);
+int n = 0;  
   
-  // set bool value
-  Firebase.setBool("truth", false);
-  // handle error
-  if (Firebase.failed()) {
-      Serial.print("setting /truth failed:");
-      Serial.println(Firebase.error());  
-      return;
-  }
-  delay(1000);
-
-  // append a new value to /logs
-  String name = Firebase.pushInt("logs", n++);
-  // handle error
-  if (Firebase.failed()) {
-      Serial.print("pushing /logs failed:");
-      Serial.println(Firebase.error());  
-      return;
-  }
-  Serial.print("pushed: /logs/");
-  Serial.println(name);
-  delay(1000);
+void loop() {  
+  // set value    
+  n=Firebase.getInt("LED_STATUS"); 
+  // handle error  
+  if (n==1) {  
+      Serial.print("LED is ON");  
+      digitalWrite(D1,HIGH);  
+      Serial.println(Firebase.error());    
+      return;  
+       delay(100);  
+  }  
+ else{  
+   Serial.print("LED is OFF");  
+   digitalWrite(D1,LOW);  
+ }  
+  // update value  
 }
