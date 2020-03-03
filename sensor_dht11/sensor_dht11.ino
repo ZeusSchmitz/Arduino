@@ -1,3 +1,10 @@
+#include <Firebase.h>
+#include <FirebaseArduino.h>
+#include <FirebaseCloudMessaging.h>
+#include <FirebaseError.h>
+#include <FirebaseHttpClient.h>
+#include <FirebaseObject.h>
+
 /* Code written by Rishi Tiwari
  *  Website: https://tricksumo.com
  *  https://youtu.be/hPv9uX3rUWc
@@ -12,14 +19,13 @@
 
 
 #include <ESP8266WiFi.h>
-#include<FirebaseArduino.h>
 #include <DHT.h>   
 
 #define DHTTYPE DHT11   // Sensor DHT 11  
 #define dht_dpin D1
 #define FIREBASE_HOST "webhome-5e814.firebaseio.com"
 #define FIREBASE_AUTH "3gAnSCcSxTUGT8Wy1YhIJ61Im8IIYNtjUt0F8OKM"
-#define WIFI_SSID "CACHACA"
+#define WIFI_SSID "FREE"
 #define WIFI_PASSWORD ""
 DHT dht(dht_dpin, DHTTYPE);      
 

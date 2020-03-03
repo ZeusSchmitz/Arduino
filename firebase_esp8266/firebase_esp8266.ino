@@ -23,7 +23,7 @@
 // Set these to run example.
 #define FIREBASE_HOST "webhome-5e814.firebaseio.com"
 #define FIREBASE_AUTH "3gAnSCcSxTUGT8Wy1YhIJ61Im8IIYNtjUt0F8OKM"
-#define WIFI_SSID "CACHACA"
+#define WIFI_SSID "FREE"
 #define WIFI_PASSWORD ""
 
 void setup() {
@@ -61,6 +61,12 @@ void loop() {
  else{  
    Serial.print("LED is OFF");  
    digitalWrite(D1,LOW);  
- }  
+ }
+
+ if (Firebase.failed()) {
+      Serial.print("pushing /logs failed:");
+      Serial.println(Firebase.error()); 
+      return;
+  }
   // update value  
 }

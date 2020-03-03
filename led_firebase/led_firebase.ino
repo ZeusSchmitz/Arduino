@@ -23,7 +23,7 @@
 // Set these to run example.
 #define FIREBASE_HOST "https://webfire-6c76b.firebaseio.com/"
 #define FIREBASE_AUTH "w4r1yPsNisoyXfJ1ZpDIioqBoLM9aNqKK39Cxoxf"
-#define WIFI_SSID "CACHACA"
+#define WIFI_SSID "FREE"
 #define WIFI_PASSWORD ""
 
 void setup() {
